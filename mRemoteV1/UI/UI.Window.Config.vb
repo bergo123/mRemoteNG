@@ -47,9 +47,10 @@ Namespace UI
                 'pGrid
                 '
                 Me.pGrid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
                 Me.pGrid.BrowsableProperties = Nothing
+                Me.pGrid.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText
                 Me.pGrid.ContextMenuStrip = Me.propertyGridContextMenu
                 Me.pGrid.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
                 Me.pGrid.HiddenAttributes = Nothing
@@ -720,12 +721,13 @@ Namespace UI
                                     strHide.Add("RDGatewayPassword")
                                     strHide.Add("RDGatewayUseConnectionCredentials")
                                     strHide.Add("RDGatewayUsername")
+
                                 ElseIf conI.RDGatewayUseConnectionCredentials Then
                                     strHide.Add("RDGatewayDomain")
                                     strHide.Add("RDGatewayPassword")
                                     strHide.Add("RDGatewayUsername")
                                 End If
-                                If Not (conI.Resolution = RDP.RDPResolutions.FitToWindow Or _
+                                If Not (conI.Resolution = RDP.RDPResolutions.FitToWindow Or
                                         conI.Resolution = RDP.RDPResolutions.Fullscreen) Then
                                     strHide.Add("AutomaticResize")
                                 End If
@@ -757,6 +759,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 If conI.VNCAuthMode = mRemoteNG.Connection.Protocol.VNC.AuthMode.AuthVNC Then
                                     strHide.Add("Username")
                                     strHide.Add("Domain")
@@ -795,6 +798,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 strHide.Add("VNCAuthMode")
                                 strHide.Add("VNCColors")
                                 strHide.Add("VNCCompression")
@@ -834,6 +838,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 strHide.Add("VNCAuthMode")
                                 strHide.Add("VNCColors")
                                 strHide.Add("VNCCompression")
@@ -874,6 +879,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 strHide.Add("Username")
                                 strHide.Add("VNCAuthMode")
                                 strHide.Add("VNCColors")
@@ -915,6 +921,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 strHide.Add("Username")
                                 strHide.Add("VNCAuthMode")
                                 strHide.Add("VNCColors")
@@ -956,6 +963,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 strHide.Add("Username")
                                 strHide.Add("VNCAuthMode")
                                 strHide.Add("VNCColors")
@@ -996,6 +1004,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 strHide.Add("VNCAuthMode")
                                 strHide.Add("VNCColors")
                                 strHide.Add("VNCCompression")
@@ -1034,6 +1043,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 strHide.Add("VNCAuthMode")
                                 strHide.Add("VNCColors")
                                 strHide.Add("VNCCompression")
@@ -1073,6 +1083,7 @@ Namespace UI
                                 strHide.Add("AutomaticResize")
                                 strHide.Add("UseConsoleSession")
                                 strHide.Add("UseCredSsp")
+                                strHide.Add("UseRDPAdmin")
                                 strHide.Add("VNCAuthMode")
                                 strHide.Add("VNCColors")
                                 strHide.Add("VNCCompression")
@@ -1176,6 +1187,10 @@ Namespace UI
 
                                 If .UseCredSsp Then
                                     strHide.Add("UseCredSsp")
+                                End If
+
+                                If .UseRDPAdmin Then
+                                    strHide.Add("UseRDPAdmin")
                                 End If
 
                                 If .RenderingEngine Then
@@ -1373,7 +1388,7 @@ Namespace UI
 
             Private Sub btnIcon_Click(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnIcon.MouseUp
                 Try
-                    If TypeOf pGrid.SelectedObject Is mRemoteNG.Connection.Info And _
+                    If TypeOf pGrid.SelectedObject Is mRemoteNG.Connection.Info And
                        Not TypeOf pGrid.SelectedObject Is mRemoteNG.Connection.PuttySession.Info Then
                         Me.cMenIcons.Items.Clear()
 
@@ -1485,9 +1500,9 @@ Namespace UI
                 Try
                     propertyGridContextMenuShowHelpText.Checked = Settings.ShowConfigHelpText
                     Dim gridItem As GridItem = pGrid.SelectedGridItem
-                    propertyGridContextMenuReset.Enabled = (pGrid.SelectedObject IsNot Nothing AndAlso _
-                                                            gridItem IsNot Nothing AndAlso _
-                                                            gridItem.PropertyDescriptor IsNot Nothing AndAlso _
+                    propertyGridContextMenuReset.Enabled = (pGrid.SelectedObject IsNot Nothing AndAlso
+                                                            gridItem IsNot Nothing AndAlso
+                                                            gridItem.PropertyDescriptor IsNot Nothing AndAlso
                                                             gridItem.PropertyDescriptor.CanResetValue(pGrid.SelectedObject))
                 Catch ex As Exception
                     MessageCollector.AddExceptionMessage("UI.Window.Config.propertyGridContextMenu_Opening() failed.", ex, MessageClass.ErrorMsg, True)
@@ -1497,9 +1512,9 @@ Namespace UI
             Private Sub propertyGridContextMenuReset_Click(sender As System.Object, e As EventArgs) Handles propertyGridContextMenuReset.Click
                 Try
                     Dim gridItem As GridItem = pGrid.SelectedGridItem
-                    If pGrid.SelectedObject IsNot Nothing AndAlso _
-                            gridItem IsNot Nothing AndAlso _
-                            gridItem.PropertyDescriptor IsNot Nothing AndAlso _
+                    If pGrid.SelectedObject IsNot Nothing AndAlso
+                            gridItem IsNot Nothing AndAlso
+                            gridItem.PropertyDescriptor IsNot Nothing AndAlso
                             gridItem.PropertyDescriptor.CanResetValue(pGrid.SelectedObject) Then
                         pGrid.ResetSelectedProperty()
                     End If
@@ -1515,6 +1530,10 @@ Namespace UI
             Private Sub propertyGridContextMenuShowHelpText_CheckedChanged(sender As Object, e As EventArgs) Handles propertyGridContextMenuShowHelpText.CheckedChanged
                 Settings.ShowConfigHelpText = propertyGridContextMenuShowHelpText.Checked
                 pGrid.HelpVisible = propertyGridContextMenuShowHelpText.Checked
+            End Sub
+
+            Private Sub pGrid_Click(sender As Object, e As EventArgs) Handles pGrid.Click
+
             End Sub
         End Class
     End Namespace

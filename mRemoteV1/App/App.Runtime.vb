@@ -756,6 +756,7 @@ Namespace App
                 My.Settings.ConDefaultLoadBalanceInfo = .LoadBalanceInfo
                 My.Settings.ConDefaultUseConsoleSession = .UseConsoleSession
                 My.Settings.ConDefaultUseCredSsp = .UseCredSsp
+                My.Settings.ConDefaultRDPAdmin = .UseRDPAdmin
                 My.Settings.ConDefaultRenderingEngine = .RenderingEngine.ToString
                 My.Settings.ConDefaultResolution = .Resolution.ToString
                 My.Settings.ConDefaultAutomaticResize = .AutomaticResize
@@ -818,6 +819,7 @@ Namespace App
                 My.Settings.InhDefaultPuttySession = .PuttySession
                 My.Settings.InhDefaultUseConsoleSession = .UseConsoleSession
                 My.Settings.InhDefaultUseCredSsp = .UseCredSsp
+                My.Settings.InhDefaultRDPAdmin = .UseRDPAdmin
                 My.Settings.InhDefaultRenderingEngine = .RenderingEngine
                 My.Settings.InhDefaultRDPAuthenticationLevel = .RDPAuthenticationLevel
                 My.Settings.InhDefaultLoadBalanceInfo = .LoadBalanceInfo
