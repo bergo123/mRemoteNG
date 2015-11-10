@@ -4049,15 +4049,6 @@ Namespace My
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Connects without Redirection.
-        '''</summary>
-        Friend Shared ReadOnly Property strPropertyDescriptionRDPAdmin() As String
-            Get
-                Return ResourceManager.GetString("strPropertyDescriptionRDPAdmin", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to Select whether local disk drives should be shown on the remote host..
         '''</summary>
         Friend Shared ReadOnly Property strPropertyDescriptionRedirectDrives() As String
@@ -4531,15 +4522,6 @@ Namespace My
         Friend Shared ReadOnly Property strPropertyNameRDGatewayUsername() As String
             Get
                 Return ResourceManager.GetString("strPropertyNameRDGatewayUsername", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Admin mode.
-        '''</summary>
-        Friend Shared ReadOnly Property strPropertyNameRDPAdmin() As String
-            Get
-                Return ResourceManager.GetString("strPropertyNameRDPAdmin", resourceCulture)
             End Get
         End Property
         

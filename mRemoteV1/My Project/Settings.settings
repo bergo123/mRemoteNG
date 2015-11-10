@@ -566,11 +566,5 @@
     <Setting Name="KeysNextTab" Provider="mRemoteNG.Config.Settings.Providers.ChooseProvider" Roaming="true" Type="System.String" Scope="User">
       <Value Profile="(Default)">9/8, 34/8</Value>
     </Setting>
-    <Setting Name="InhDefaultRDPAdmin" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="ConDefaultRDPAdmin" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

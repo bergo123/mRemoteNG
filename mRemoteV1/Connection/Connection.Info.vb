@@ -225,30 +225,16 @@ Namespace Connection
         End Property
 
         Private _useCredSsp As Boolean = My.Settings.ConDefaultUseCredSsp
-        <LocalizedCategory("strCategoryProtocol", 3),
-            LocalizedDisplayName("strPropertyNameUseCredSsp"),
-            LocalizedDescription("strPropertyDescriptionUseCredSsp"),
-            TypeConverter(GetType(Tools.Misc.YesNoTypeConverter))>
+        <LocalizedCategory("strCategoryProtocol", 3), _
+            LocalizedDisplayName("strPropertyNameUseCredSsp"), _
+            LocalizedDescription("strPropertyDescriptionUseCredSsp"), _
+            TypeConverter(GetType(Tools.Misc.YesNoTypeConverter))> _
         Public Property UseCredSsp() As Boolean
             Get
                 Return GetInheritedPropertyValue("UseCredSsp", _useCredSsp)
             End Get
             Set(ByVal value As Boolean)
                 _useCredSsp = value
-            End Set
-        End Property
-
-        Private _useRDPAdmin As Boolean = My.Settings.ConDefaultRDPAdmin
-        <LocalizedCategory("strCategoryProtocol", 3),
-            LocalizedDisplayName("strPropertyNameRDPAdmin"),
-            LocalizedDescription("strPropertyDescriptionRDPAdmin"),
-            TypeConverter(GetType(Tools.Misc.YesNoTypeConverter))>
-        Public Property UseRDPAdmin() As Boolean
-            Get
-                Return GetInheritedPropertyValue("UseRDPAdmin", _useRDPAdmin)
-            End Get
-            Set(ByVal value As Boolean)
-                _useRDPAdmin = value
             End Set
         End Property
 #End Region

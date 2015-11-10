@@ -54,7 +54,7 @@ Namespace Connection
 #End Region
 
 #Region "Private Declarations"
-            Private _rdpClient As MsRdpClient6NotSafeForScripting
+            Private _rdpClient As MsRdpClient5NotSafeForScripting
             Private _rdpVersion As Version
             Private _connectionInfo As Info
             Private _loginComplete As Boolean
@@ -62,7 +62,7 @@ Namespace Connection
 
 #Region "Public Methods"
             Public Sub New()
-                Control = New AxMsRdpClient6NotSafeForScripting
+                Control = New AxMsRdpClient5NotSafeForScripting
             End Sub
 
             Public Overrides Function SetProps() As Boolean
@@ -78,7 +78,7 @@ Namespace Connection
                             System.Windows.Forms.Application.DoEvents()
                         Loop
 
-                        _rdpClient = CType(Control, AxMsRdpClient6NotSafeForScripting).GetOcx()
+                        _rdpClient = CType(Control, AxMsRdpClient5NotSafeForScripting).GetOcx()
                     Catch ex As Runtime.InteropServices.COMException
                         MessageCollector.AddExceptionMessage(My.Language.strRdpControlCreationFailed, ex)
                         Control.Dispose()
@@ -100,15 +100,12 @@ Namespace Connection
                     _rdpClient.AdvancedSettings2.keepAliveInterval = 60000 'in milliseconds (10.000 = 10 seconds)
                     _rdpClient.AdvancedSettings5.AuthenticationLevel = 0
                     _rdpClient.AdvancedSettings2.EncryptionEnabled = 1
-                    _rdpClient.AdvancedSettings7.ConnectToAdministerServer = True
-
 
                     _rdpClient.AdvancedSettings2.overallConnectionTimeout = 20
 
                     _rdpClient.AdvancedSettings2.BitmapPeristence = Me._connectionInfo.CacheBitmaps
                     If _rdpVersion >= Versions.RDC61 Then
                         _rdpClient.AdvancedSettings7.EnableCredSspSupport = _connectionInfo.UseCredSsp
-                        _rdpClient.AdvancedSettings7.ConnectToAdministerServer = _connectionInfo.UseRDPAdmin
                     End If
 
                     Me.SetUseConsoleSession()

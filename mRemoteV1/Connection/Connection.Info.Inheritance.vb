@@ -16,7 +16,7 @@ Namespace Connection
                     And EnableFontSmoothing And EnableDesktopComposition And Domain And Icon And Password _
                     And Port And Protocol And PuttySession And RedirectDiskDrives And RedirectKeys _
                     And RedirectPorts And RedirectPrinters And RedirectSmartCards And RedirectSound And Resolution _
-                    And AutomaticResize And UseConsoleSession And UseCredSsp And RenderingEngine And UserField And UseRDPAdmin _
+                    And AutomaticResize And UseConsoleSession And UseCredSsp And RenderingEngine And UserField _
                     And ExtApp And Username And Panel And RDPAuthenticationLevel _
                     And LoadBalanceInfo And PreExtApp And PostExtApp And MacAddress And VNCAuthMode _
                     And VNCColors And VNCCompression And VNCEncoding And VNCProxyIP And VNCProxyPassword _
@@ -120,15 +120,9 @@ Namespace Connection
 
             <LocalizedCategory("strCategoryProtocol", 4), _
                 LocalizedDisplayNameInheritAttribute("strPropertyNameUseCredSsp"), _
-                LocalizedDescriptionInheritAttribute("strPropertyDescriptionUseCredSsp"),
-                TypeConverter(GetType(Tools.Misc.YesNoTypeConverter))>
+                LocalizedDescriptionInheritAttribute("strPropertyDescriptionUseCredSsp"), _
+                TypeConverter(GetType(Tools.Misc.YesNoTypeConverter))> _
             Public Property UseCredSsp() As Boolean = My.Settings.InhDefaultUseCredSsp
-
-            <LocalizedCategory("strCategoryProtocol", 4),
-                LocalizedDisplayNameInheritAttribute("strPropertyNameRDPAdmin"),
-                LocalizedDescriptionInheritAttribute("strPropertyDescriptionRDPAdmin"),
-                TypeConverter(GetType(Tools.Misc.YesNoTypeConverter))>
-            Public Property UseRDPAdmin() As Boolean = My.Settings.InhDefaultRDPAdmin
 #End Region
 #Region "RD Gateway"
             <LocalizedCategory("strCategoryGateway", 5), _
@@ -396,8 +390,6 @@ Namespace Connection
                 RenderingEngine = value
                 UseConsoleSession = value
                 UseCredSsp = value
-                UseRDPAdmin = value
-
 
                 ' RD Gateway
                 RDGatewayUsageMethod = value

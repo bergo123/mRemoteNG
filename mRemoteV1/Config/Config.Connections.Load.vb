@@ -527,9 +527,7 @@ Namespace Config
 
                         If confVersion >= 2.4 Then
                             conI.UseCredSsp = .Item("UseCredSsp")
-                            conI.UseRDPAdmin = .Item("UseRDPAdmin")
                             conI.Inherit.UseCredSsp = .Item("InheritUseCredSsp")
-                            conI.Inherit.UseRDPAdmin = .Item("InheritUseRDPAdmin")
                         End If
 
                         If confVersion >= 2.5 Then
@@ -1017,9 +1015,7 @@ Namespace Config
 
                         If confVersion >= 2.4 Then
                             conI.UseCredSsp = .Attributes("UseCredSsp").Value
-                            conI.UseRDPAdmin = .Attributes("UseRDPAdmin").Value
                             conI.Inherit.UseCredSsp = .Attributes("InheritUseCredSsp").Value
-                            conI.Inherit.UseRDPAdmin = .Attributes("InheritUseRDPAdmin").Value
                         End If
 
                         If confVersion >= 2.5 Then
